@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "httpTests",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

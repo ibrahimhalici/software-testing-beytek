@@ -1,0 +1,16 @@
+meta {
+  name: delete Comment
+  type: http
+  seq: 3
+}
+
+delete {
+  url: http://localhost:8080/api/v1/comments/66e402aa8dd3605675f227b9
+  body: json
+  auth: none
+}
+
+body:json {
+  {"content":"this is one my comments",
+  "commenter":"ibrahimhalici"}
+}

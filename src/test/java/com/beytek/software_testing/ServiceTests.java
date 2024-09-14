@@ -14,8 +14,8 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 public class ServiceTests {
@@ -28,6 +28,7 @@ public class ServiceTests {
 
     @Test
     public void getAllTestCommentsReturnsOnlyTestComments() {
+
         //arrange
         List<Comment> allComments = new ArrayList<>();
         Comment comment = new Comment("abc", "integrationTest", new Date());
@@ -40,9 +41,23 @@ public class ServiceTests {
         //act
         List<Comment> actual = targetService.getAllTestComments();
         System.out.println(actual);
+
         //assert
         verify(repository).findAll();
         assertTrue(!actual.isEmpty());
+    }
+
+    @Test
+    public void addTestCommentReturnsComment() {
+        //arrange
+        when(repository.save(any(Comment.class))).thenReturn(new Comment());
+        //act
+        targetService.addTestComments();
+
+        //assert
+        verify(repository).deleteAll();
+        verify(repository,times(5)).save(any());
+
     }
 
 }
